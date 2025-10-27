@@ -24,8 +24,9 @@ export async function POST(request: NextRequest) {
         const response = transport.sendMail({
             from: email,
             to: process.env.USER_EMAIL,
+            replyTo: email, // 사용자가 입력한 메일 주소
             subject: title,
-            html: content,
+            text: content,
         });
 
         if (!response) {

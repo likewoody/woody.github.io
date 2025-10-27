@@ -1,7 +1,7 @@
 import Form from "next/form";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useInquiry } from ""
+import { useInquiry } from "@/hooks/useInquiry"
 
 export default function InquiryForm({setModal} : InquiryProps) {
     
@@ -11,6 +11,8 @@ export default function InquiryForm({setModal} : InquiryProps) {
         watch, 
         formState: { errors }
     } = useForm();
+
+    const { onClickInquiry } = useInquiry(watch, {setModal});
 
     // 모달 내부를 눌렀을 때 꺼지는걸 방지한다.
     const preventOffModal = (event: React.MouseEvent) => {
@@ -29,13 +31,14 @@ export default function InquiryForm({setModal} : InquiryProps) {
 
     return (
         <div onClick={setModal} className="fixed inset-0 bg-gray-500/50 flex justify-center items-center">
-            <div onClick={preventOffModal} className="bg-gray-500 w-1/2 h-1/2 rounded-md p-5 text-gray-100 text-black">
+            <div onClick={preventOffModal} className="bg-white w-1/2 rounded-md p-5 text-gray-100 text-black">
+                <h1 className="text-black text-center font-bold">질문 남기기</h1>
                 <Form action={""} onSubmit={handleSubmit(onClickInquiry)}>
                     <div className="grid p-6 gap-9">
-                        <input {...register("email", {})} placeholder="이메일을 입력하세요" type="email" />
-                        <input {...register("title", {})} placeholder="제목을 입력하세요" type="text" />
-                        <textarea {...register("content", {})} name="content" placeholder="내용을 입력하세요"/>
-                        <button type="submit">질문완료</button>
+                        <input className="text-field" {...register("email", {})} placeholder="이메일을 입력하세요" type="email" />
+                        <input className="text-field" {...register("title", {})} placeholder="제목을 입력하세요" type="text" />
+                        <textarea className="text-field" {...register("content", {})} name="content" placeholder="내용을 입력하세요"/>
+                        <button className="text-field" type="submit">질문완료</button>
                     </div>
                 </Form>
             </div>

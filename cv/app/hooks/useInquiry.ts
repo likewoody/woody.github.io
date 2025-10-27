@@ -1,6 +1,6 @@
 import { FieldValues, UseFormWatch } from "react-hook-form";
 
-export function useInquiry({setModal}: InquiryProps, watch: UseFormWatch<FieldValues>) {
+export function useInquiry(watch: UseFormWatch<FieldValues>, {setModal}: InquiryProps) {
     const onClickInquiry = async () => {
         const email = watch("email");
         const title = watch("title");
@@ -31,8 +31,8 @@ export function useInquiry({setModal}: InquiryProps, watch: UseFormWatch<FieldVa
             throw new Error(data || "서버 요청 실패함");
         }
 
-        setModal();
         alert("질문이 완료되었습니다.");
+        setModal();
     }
 
     return {onClickInquiry}

@@ -27,11 +27,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body      
-        className={`${geistSans.variable} ${geistMono.variable} antialiased grid place-items-center p-3`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header/>
-        {children}
-        <Inquiry/>
+        <main className="grid place-items-center p-3">
+          {children}
+          <Inquiry/>
+        </main>
+        
       </body>
     </html>
   );

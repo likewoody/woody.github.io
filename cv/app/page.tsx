@@ -7,10 +7,12 @@ import Information from "@/components/Information";
 
 export default function Home() {
   return (
-    <div>
+    <div className="text-center">
       <Suspense fallback={<div>로딩 중...</div>}>
         <Linking/>
-        <MyImage/>
+        <div className="relative">
+          <MyImage/>
+        </div>
         <Information/>
       </Suspense>
     </div>
